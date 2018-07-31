@@ -5,10 +5,10 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}</ProjectGuid>
+    <ProjectGuid>{E2B8D5D6-5BD1-4D40-ABEB-214EF522EF2C}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Weather</RootNamespace>
-    <AssemblyName>Weather.Core</AssemblyName>
+    <RootNamespace>Weather.Services.Noaa</RootNamespace>
+    <AssemblyName>Weather.Services.Noaa</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <ProjectTypeGuids>{14182A97-F7F0-4C62-8B27-98AA8AE2109A};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
@@ -22,7 +22,7 @@
     <DefineConstants>
     </DefineConstants>
     <OutputPath>bin\Debug</OutputPath>
-    <DocumentationFile>Weather.Core.xml</DocumentationFile>
+    <DocumentationFile>Weather.Services.Noaa.xml</DocumentationFile>
     <NoWarn>40057,42016,41999,42020,42021,42022</NoWarn>
     <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
   </PropertyGroup>
@@ -34,7 +34,7 @@
     </DefineConstants>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DocumentationFile>Weather.Core.xml</DocumentationFile>
+    <DocumentationFile>Weather.Services.Noaa.xml</DocumentationFile>
     <NoWarn>40057,42016,41999,42020,42021,42022</NoWarn>
     <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
   </PropertyGroup>
@@ -52,9 +52,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework and Windows SDK is automatically included -->
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -85,12 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="My Project\AssemblyInfo.vb" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Weather.Services.Noaa\Weather.Services.Noaa.vbproj">
-      <Project>{e2b8d5d6-5bd1-4d40-abeb-214ef522ef2c}</Project>
-      <Name>Weather.Services.Noaa</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
