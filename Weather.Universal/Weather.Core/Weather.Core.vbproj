@@ -11,8 +11,8 @@
     <AssemblyName>Weather.Core</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <ProjectTypeGuids>{14182A97-F7F0-4C62-8B27-98AA8AE2109A};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile151</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,9 +52,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework and Windows SDK is automatically included -->
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -84,13 +83,58 @@
     <Import Include="Windows.UI.Xaml.Media.Imaging" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buses\Busses.vb" />
+    <Compile Include="Buses\IMessageBus.vb" />
+    <Compile Include="Buses\MessageBus.vb" />
+    <Compile Include="Messages\RemoveWeatherSourceMessage.vb" />
+    <Compile Include="Messages\ResetDatabaseMessage.vb" />
+    <Compile Include="Messages\StatusMessage.vb" />
+    <Compile Include="Models\Address.vb" />
+    <Compile Include="Models\CurrentObservations.vb" />
+    <Compile Include="Models\GeoCoordinate.vb" />
+    <Compile Include="Models\Location.vb" />
+    <Compile Include="Models\Noaa\Data.vb" />
+    <Compile Include="Models\Noaa\DWML.vb" />
+    <Compile Include="Models\Noaa\Enums.vb" />
+    <Compile Include="Models\Noaa\Head.vb" />
+    <Compile Include="Models\Noaa\Product.vb" />
+    <Compile Include="Models\Noaa\Source.vb" />
+    <Compile Include="Models\Noaa\WeatherByDay.vb" />
+    <Compile Include="Models\Station.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="RelayCommand.vb" />
+    <Compile Include="Services\IDialogService.vb" />
+    <Compile Include="Services\ILocationService.vb" />
+    <Compile Include="Services\INavigationService.vb" />
+    <Compile Include="Services\ISettingsService.vb" />
+    <Compile Include="Services\IWeatherService.vb" />
+    <Compile Include="ViewModels\AddWeatherSourceViewModel.vb" />
+    <Compile Include="ViewModels\CurrentObservationsViewModel.vb" />
+    <Compile Include="ViewModels\LocationViewModel.vb" />
+    <Compile Include="ViewModels\MainViewModel.vb" />
+    <Compile Include="ViewModels\SettingsViewModel.vb" />
+    <Compile Include="ViewModels\WeatherSourceListItemViewModel.vb" />
+    <Compile Include="ViewModels\WeatherSourcesViewModel.vb" />
+    <Compile Include="ViewModels\_ObservableObject.vb" />
+    <Compile Include="ViewModels\_ViewModelBase.vb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Weather.Services.Noaa\Weather.Services.Noaa.vbproj">
-      <Project>{e2b8d5d6-5bd1-4d40-abeb-214ef522ef2c}</Project>
-      <Name>Weather.Services.Noaa</Name>
-    </ProjectReference>
+    <Content Include="SampleData\AddWeatherSourceViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SampleData\CurrentObserevationsSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SampleData\MainViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SampleData\ZipCodeListViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

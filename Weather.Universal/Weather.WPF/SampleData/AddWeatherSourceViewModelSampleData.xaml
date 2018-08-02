@@ -1,0 +1,4 @@
+<ViewModels:AddWeatherSourceViewModel xmlns:ViewModels="clr-namespace:Weather.ViewModels;assembly=Weather.Core" 
+                                      IsSearching="True" 
+                                      PostalCode="Vestibulum adipiscing cras class nam" 
+                                      Status="Duis parturient" Title="Aliquam integer curae"/>

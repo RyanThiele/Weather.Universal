@@ -1,0 +1,2 @@
+﻿Public Structure RemoveWeatherSourceMessage
+End Structure
