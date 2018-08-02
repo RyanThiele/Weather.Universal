@@ -1,6 +1,7 @@
 ﻿Imports System.Threading
 Imports System.Windows.Input
 Imports Weather.Services
+Imports Microsoft.Extensions.Logging
 
 Namespace ViewModels
     Public Class MainViewModel
@@ -8,9 +9,11 @@ Namespace ViewModels
 
         Private ReadOnly _messageBus As IMessageBus
         Private ReadOnly _dialogService As IDialogService
+        Private ReadOnly _logger As ILogger
         Private ReadOnly _navigationService As INavigationService
         Private ReadOnly _settingsService As ISettingsService
         Private ReadOnly _weatherService As IWeatherService
+
 
 
         Private ReadOnly _locationService As ILocationService
@@ -19,15 +22,22 @@ Namespace ViewModels
 
 #Region "Constructors"
 
-        Public Sub New()
+        'Public Sub New()
 
-        End Sub
+        'End Sub
 
-        Public Sub New(messageBus As IMessageBus, dialogService As IDialogService, navigationService As INavigationService, locationService As ILocationService, settingsService As ISettingsService, weatherService As IWeatherService)
+        Public Sub New(messageBus As IMessageBus,
+                       dialogService As IDialogService,
+                       navigationService As INavigationService,
+                       logger As ILogger(Of MainViewModel),
+                       locationService As ILocationService,
+                       settingsService As ISettingsService,
+                       weatherService As IWeatherService)
             _messageBus = messageBus
             _dialogService = dialogService
             _navigationService = navigationService
             _locationService = locationService
+            _logger = logger
 
             _settingsService = settingsService
             _weatherService = weatherService
@@ -141,6 +151,8 @@ Namespace ViewModels
         ''' This is the trunk logic for the view model. So, the try/catch will go here.
         ''' </remarks>
         Public Overrides Async Function InitializeAsync(Optional parameter As Object = Nothing) As Task
+            _logger.LogInformation("Hello World")
+
             If _IsIntilizing Then Return
             _IsIntilizing = True
             Try

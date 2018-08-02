@@ -3,6 +3,7 @@ Imports Windows.UI.Xaml.Media.Animation
 Imports Microsoft.Extensions.DependencyInjection
 Imports Weather.ViewModels
 Imports Weather.Services
+Imports Microsoft.Extensions.Logging
 
 Class Application
 
@@ -26,8 +27,12 @@ Class Application
         _mainWindow = ApplicationMainWindow
         ApplicationMainWindow.Show()
 
+        Dim loggerFactory As ILoggerFactory = _container.GetRequiredService(Of ILoggerFactory)
+        loggerFactory.AddDebug(LogLevel.Debug)
+
         Dim navigationService = _container.GetRequiredService(Of INavigationService)()
         navigationService.NavigateTo(Of MainViewModel)()
+
     End Sub
 
 
@@ -40,9 +45,12 @@ Class Application
 
         Dim services As New ServiceCollection
 
+
+
         ' Services
         services.AddSingleton(Of INavigationService, Services.NavigationService)
         services.AddSingleton(Of IMessageBus, MessageBus)
+        services.AddLogging()
 
         services.AddTransient(Of IDialogService, Services.DialogService)
         services.AddTransient(Of ISettingsService, Services.SettingsService)
