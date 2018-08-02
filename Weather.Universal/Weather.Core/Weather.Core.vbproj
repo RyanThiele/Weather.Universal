@@ -119,12 +119,6 @@
     <Compile Include="ViewModels\_ViewModelBase.vb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Weather.Services.Noaa\Weather.Services.Noaa.vbproj">
-      <Project>{e2b8d5d6-5bd1-4d40-abeb-214ef522ef2c}</Project>
-      <Name>Weather.Services.Noaa</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="SampleData\AddWeatherSourceViewModelSampleData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

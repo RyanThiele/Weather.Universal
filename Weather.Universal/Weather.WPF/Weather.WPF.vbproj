@@ -270,10 +270,6 @@
       <Project>{9e2c42c1-7a4b-4ee4-8236-112dee976f80}</Project>
       <Name>Weather.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Weather.Services.Noaa\Weather.Services.Noaa.vbproj">
-      <Project>{e2b8d5d6-5bd1-4d40-abeb-214ef522ef2c}</Project>
-      <Name>Weather.Services.Noaa</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
