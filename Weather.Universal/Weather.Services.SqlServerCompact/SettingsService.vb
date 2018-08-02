@@ -1,4 +1,5 @@
-﻿Imports Weather.Models
+﻿Imports System.Threading
+Imports Weather.Models
 Imports Weather.Services
 
 Public Class SettingsService
@@ -22,11 +23,7 @@ Public Class SettingsService
 #End Region
 
 
-    Public Function GetCurrentLocationAsync() As Task(Of GeoCoordinate) Implements ISettingsService.GetCurrentLocationAsync
-        Throw New NotImplementedException()
-    End Function
-
-    Public Function GetSelectedLocationsAsync() As Task(Of IEnumerable(Of Location)) Implements ISettingsService.GetSelectedLocationsAsync
+    Public Function ResetDatabaseAsync() As Task Implements ISettingsService.ResetDatabaseAsync
         Throw New NotImplementedException()
     End Function
 
@@ -38,11 +35,18 @@ Public Class SettingsService
         Throw New NotImplementedException()
     End Function
 
-    Public Function ResetDatabaseAsync() As Task Implements ISettingsService.ResetDatabaseAsync
-        Throw New NotImplementedException()
-    End Function
-
     Public Function SetSelectedLocationsAsync(locations As IEnumerable(Of Location)) As Task Implements ISettingsService.SetSelectedLocationsAsync
         Throw New NotImplementedException()
     End Function
+
+    Public Function GetSelectedLocationsAsync() As Task(Of IEnumerable(Of Location)) Implements ISettingsService.GetSelectedLocationsAsync
+        Throw New NotImplementedException()
+    End Function
+
+    Public Function GetCurrentLocationAsync(token As CancellationToken) As Task(Of GeoCoordinate) Implements ISettingsService.GetCurrentLocationAsync
+        Throw New NotImplementedException()
+    End Function
+
+
+
 End Class
