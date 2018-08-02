@@ -1,0 +1,92 @@
+<ViewModels:MainViewModel xmlns:ViewModels="clr-namespace:Weather.ViewModels;assembly=Weather.Core"
+                          xmlns:Models="clr-namespace:Weather.Models;assembly=Weather.Core"
+                          Status="Parturient vel" Title="Nam amet">
+    <ViewModels:MainViewModel.WeatherSourcesViewModel>
+        <ViewModels:WeatherSourcesViewModel Title="Class nam curabitur">
+            <ViewModels:WeatherSourcesViewModel.WeatherSources>
+                <!--<ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id1" City="City1" State="State1" ZipCode="ZipCode1" DisplayString="ZipCode1 (ID1)" />
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id2" City="City2" State="State2" ZipCode="ZipCode2" DisplayString="ZipCode2 (ID2)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id3" City="City3" State="State3" ZipCode="ZipCode3" DisplayString="ZipCode3 (ID3)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id4" City="City4" State="State4" ZipCode="ZipCode4" DisplayString="ZipCode4 (ID4)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id5" City="City5" State="State5" ZipCode="ZipCode5" DisplayString="ZipCode5 (ID5)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id6" City="City6" State="State6" ZipCode="ZipCode6" DisplayString="ZipCode6 (ID6)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id7" City="City7" State="State7" ZipCode="ZipCode7" DisplayString="ZipCode7 (ID7)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id8" City="City8" State="State8" ZipCode="ZipCode8" DisplayString="ZipCode8 (ID8)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id9" City="City9" State="State9" ZipCode="ZipCode9" DisplayString="ZipCode9 (ID9)"/>
+                <ViewModels:WeatherSourceListItemViewModel WeatherStationId="Id10" City="City10" State="State10" ZipCode="ZipCode10" DisplayString="ZipCode10 (ID10)"/>-->
+            </ViewModels:WeatherSourcesViewModel.WeatherSources>
+        </ViewModels:WeatherSourcesViewModel>
+    </ViewModels:MainViewModel.WeatherSourcesViewModel>
+    <ViewModels:MainViewModel.LocationViewModels>
+        <ViewModels:LocationViewModel Title="Elkhart, IN">
+            <ViewModels:LocationViewModel.CurrentObservations>
+                <Models:CurrentObservations xmlns:Models="clr-namespace:Dynamensions.Weather.Models" 
+                             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+                             StationId="Lorem sed facilisis accumsan" 
+                             MoreInformation="Curae donec etiam elementum fusce" 
+                             RefreshTime="1:00:00"
+                             Location="Praesent dignissim" 
+                             Latitude="123.45"
+                             Longitude="543.21"
+                             UpdatedTime="07/09/2018 02:44:35" 
+                             UpdatedTimeString="Duis fringilla est vivamus nunc" 
+                             Weather="Vestibulum habitasse adipiscing"
+                             TemperatureString="Cras quisque fermentum dis" 
+                             TemperatureF="12"
+                             TemperatureC="21"
+                             RelativeHumidity="11" 
+                             WindString="Amet ante hendrerit leo" 
+                             WindDirection="NW" 
+                             WindDegrees="95" 
+                             WindMph="85"
+                             WindKnots="75"
+                             PressureIn="12.22"
+                             DewPointString="Aliquam curabitur nam phasellus" 
+                             DewPointF="45"
+                             DewPointC="54"
+                             HeatIndexString="Maecenas integer consequat class convallis" 
+                             HeatIndexF="56"
+                             HeatIndexC="65"
+                             VisibilityMi="12"
+                             LastChecked="07/09/2018 02:44:35"
+                             Icon="http://www.noaa.gov/sites/all/themes/custom/noaa/images/noaa_logo_circle_bw_72x72.svg">
+                </Models:CurrentObservations>
+            </ViewModels:LocationViewModel.CurrentObservations>
+        </ViewModels:LocationViewModel>
+        <ViewModels:LocationViewModel Title="Elkhart, IN">
+            <ViewModels:LocationViewModel.CurrentObservations>
+                <Models:CurrentObservations xmlns:Models="clr-namespace:Dynamensions.Weather.Models" 
+                             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+                             StationId="Lorem sed facilisis accumsan" 
+                             MoreInformation="Curae donec etiam elementum fusce" 
+                             RefreshTime="1:00:00"
+                             Location="Praesent dignissim" 
+                             Latitude="123.45"
+                             Longitude="543.21"
+                             UpdatedTime="07/09/2018 02:44:35" 
+                             UpdatedTimeString="Duis fringilla est vivamus nunc" 
+                             Weather="Vestibulum habitasse adipiscing"
+                             TemperatureString="Cras quisque fermentum dis" 
+                             TemperatureF="12"
+                             TemperatureC="21"
+                             RelativeHumidity="11" 
+                             WindString="Amet ante hendrerit leo" 
+                             WindDirection="NW" 
+                             WindDegrees="95" 
+                             WindMph="85"
+                             WindKnots="75"
+                             PressureIn="12.22"
+                             DewPointString="Aliquam curabitur nam phasellus" 
+                             DewPointF="45"
+                             DewPointC="54"
+                             HeatIndexString="Maecenas integer consequat class convallis" 
+                             HeatIndexF="56"
+                             HeatIndexC="65"
+                             VisibilityMi="12"
+                             LastChecked="07/09/2018 02:44:35"
+                             Icon="http://www.noaa.gov/sites/all/themes/custom/noaa/images/noaa_logo_circle_bw_72x72.svg">
+                </Models:CurrentObservations>
+            </ViewModels:LocationViewModel.CurrentObservations>
+        </ViewModels:LocationViewModel>
+    </ViewModels:MainViewModel.LocationViewModels>
+</ViewModels:MainViewModel>

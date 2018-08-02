@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Dynamensions.Weather.CurrentObservationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Weather.WPF.Converters"
+             mc:Ignorable="d"
+             x:Name="CurrentObservations"
+             d:DesignHeight="480" d:DesignWidth="480"
+             d:DataContext="{d:DesignData /SampleData/CurrentObserevationsSampleData.xaml}">
+    <UserControl.Resources>
+        <converters:NullOrEmptyToBooleanConverter x:Key="NullOrEmptyToBooleanConverter" />
+    </UserControl.Resources>
+    <StackPanel x:Name="LayoutRoot" Background="{Binding ElementName=CurrentObservations, Path=Background}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding Icon}" VerticalAlignment="Top" Margin="0,15" />
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1">
+                <TextBlock Text="{Binding TemperatureString}" />
+                <TextBlock Text="{Binding Weather}" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding UpdatedTime, StringFormat='Last Updated: {0}'}" />
+                <TextBlock Text="{Binding LastChecked, StringFormat='Last Checked: {0}'}" />
+                <StackPanel Orientation="Horizontal" Visibility="{Binding PressureIn, Converter={StaticResource NullOrEmptyToBooleanConverter}}">
+                    <Path Data="{DynamicResource PG}" />
+                    <TextBlock Text="{Binding PressureIn, StringFormat='{} {0} in'}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding RelativeHumidity, Converter={StaticResource NullOrEmptyToBooleanConverter}}">
+                    <Path Data="{DynamicResource HumidityPath}" />
+                    <TextBlock Text="{Binding RelativeHumidity, StringFormat='{} {0}%'}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding HeatIndexString, Converter={StaticResource NullOrEmptyToBooleanConverter}}">
+                    <Path Data="{DynamicResource TemperaturePath}" />
+                    <TextBlock Text="{Binding HeatIndexString}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding WindString, Converter={StaticResource NullOrEmptyToBooleanConverter}}">
+                    <Path Data="{DynamicResource WindPath}" />
+                    <TextBlock Text="{Binding WindString}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding DewPointString, Converter={StaticResource NullOrEmptyToBooleanConverter}}">
+                    <Path Data="{DynamicResource DewPointPath}" />
+                    <TextBlock Text="{Binding DewPointString}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>

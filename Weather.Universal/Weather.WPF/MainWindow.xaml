@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Weather.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Universal Weather" Height="350" Width="525" Icon="/Images/Weather-01.png">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="PreviousButton" Margin="5">
+                <Path Data="M25.320001,0L25.320001,32 0,16z" Stretch="Uniform" Fill="#FFFFFFFF" Width="24" Height="24" Margin="3" RenderTransformOrigin="0.604,0.5" />
+            </Button>
+            <Button x:Name="NextButton" Margin="5">
+                <Path Data="M0,0L25.194,16 0,32z" Stretch="Uniform" Fill="#FFFFFFFF" Width="24" Height="24" Margin="3" />
+            </Button>
+
+            <TextBlock x:Name="ContentTitle" />
+        </StackPanel>
+        <ContentPresenter x:Name="MainContent" Grid.Row="1" />
     </Grid>
 </Window>
