@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Weather.Core", "Weather.Core\Weather.Core.vbproj", "{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Weather.WPF", "Weather.WPF\Weather.WPF.vbproj", "{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Weather.Core", "Weather.Core\Weather.Core.vbproj", "{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,22 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|ARM.Build.0 = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x64.Build.0 = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x86.Build.0 = Debug|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|ARM.ActiveCfg = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|ARM.Build.0 = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x64.ActiveCfg = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x64.Build.0 = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x86.ActiveCfg = Release|Any CPU
-		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x86.Build.0 = Release|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -51,6 +35,22 @@ Global
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Release|x64.Build.0 = Release|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Release|x86.ActiveCfg = Release|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Release|x86.Build.0 = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|ARM.Build.0 = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x64.Build.0 = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|ARM.Build.0 = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x64.ActiveCfg = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x64.Build.0 = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x86.ActiveCfg = Release|Any CPU
+		{9E2C42C1-7A4B-4EE4-8236-112DEE976F80}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
