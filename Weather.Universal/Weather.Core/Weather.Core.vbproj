@@ -103,9 +103,9 @@
     <Compile Include="Models\Station.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="RelayCommand.vb" />
-    <Compile Include="Services\IDialogService.vb" />
+    <Compile Include="Services\Essential Services\IDialogService.vb" />
     <Compile Include="Services\ILocationService.vb" />
-    <Compile Include="Services\INavigationService.vb" />
+    <Compile Include="Services\Essential Services\INavigationService.vb" />
     <Compile Include="Services\ISettingsService.vb" />
     <Compile Include="Services\IWeatherService.vb" />
     <Compile Include="ViewModels\AddWeatherSourceViewModel.vb" />
