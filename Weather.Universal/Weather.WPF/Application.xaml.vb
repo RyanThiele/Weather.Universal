@@ -23,19 +23,6 @@ Class Application
     End Property
 
 
-    Protected Overrides Sub OnStartup(e As StartupEventArgs)
-        _mainWindow = ApplicationMainWindow
-        ApplicationMainWindow.Show()
-
-        Dim loggerFactory As ILoggerFactory = _container.GetRequiredService(Of ILoggerFactory)
-        loggerFactory.AddDebug(LogLevel.Debug)
-
-        Dim navigationService = _container.GetRequiredService(Of INavigationService)()
-        navigationService.NavigateTo(Of MainViewModel)()
-
-    End Sub
-
-
     ''' <summary>
     ''' Initializes the singleton application object. This is the first line of authored code
     ''' executed, and as such is the logical equivalent of main() or WinMain().
@@ -44,8 +31,6 @@ Class Application
         InitializeComponent()
 
         Dim services As New ServiceCollection
-
-
 
         ' Services
         services.AddSingleton(Of INavigationService, Services.NavigationService)
@@ -61,8 +46,23 @@ Class Application
         services.AddTransient(Of MainViewModel)
 
         _container = services.BuildServiceProvider
+    End Sub
+
+
+    Protected Overrides Sub OnStartup(e As StartupEventArgs)
+        _mainWindow = ApplicationMainWindow
+        ApplicationMainWindow.Show()
+
+        Dim loggerFactory As ILoggerFactory = _container.GetRequiredService(Of ILoggerFactory)
+        loggerFactory.AddDebug(LogLevel.Debug)
+
+        Dim navigationService = _container.GetRequiredService(Of INavigationService)()
+        navigationService.NavigateTo(Of MainViewModel)()
 
     End Sub
+
+
+
 
 
 End Class

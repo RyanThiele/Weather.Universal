@@ -113,7 +113,7 @@ Namespace ViewModels
                 End If
 
                 ' check if location already in cache.
-                Dim locations As IEnumerable(Of Models.Location) = Await _settingsService.GetSelectedLocationsAsync
+                Dim locations As IEnumerable(Of Models.Location) = Await _settingsService.GetLocationsAsync(New CancellationToken)
                 If locations IsNot Nothing Then
                     Dim existingLocation As Models.Location = locations.Where(Function(o) o.Address.PostalCode.Equals(PostalCode)).SingleOrDefault
                     ' location already exits, notify user and bail.

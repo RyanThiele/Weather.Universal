@@ -166,14 +166,14 @@ Namespace ViewModels
 #Region "Methods"
 
         Public Overrides Function InitializeAsync(Optional parameter As Object = Nothing) As Task
-            UpdateDataAsync()
+            'UpdateDataAsync()
 
-            Dim timer As New DispatcherTimer
-            timer.Interval = TimeSpan.FromMinutes(1)
-            AddHandler timer.Tick, Sub(s, e)
-                                       UpdateDataAsync()
-                                   End Sub
-            timer.Start()
+            'Dim timer As New DispatcherTimer
+            'timer.Interval = TimeSpan.FromMinutes(1)
+            'AddHandler timer.Tick, Sub(s, e)
+            '                           UpdateDataAsync()
+            '                       End Sub
+            'timer.Start()
 
             Return Task.Delay(0)
         End Function
