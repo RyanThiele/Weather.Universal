@@ -24,7 +24,7 @@
                 <TextBlock Text="{Binding UpdatedTime, StringFormat='Last Updated: {0}'}" />
                 <TextBlock Text="{Binding LastChecked, StringFormat='Last Checked: {0}'}" />
                 <StackPanel Orientation="Horizontal" Visibility="{Binding PressureIn, Converter={StaticResource NullOrEmptyToBooleanConverter}}">
-                    <Path Data="{DynamicResource PG}" />
+                    <Path Data="{DynamicResource BarometerPath}" />
                     <TextBlock Text="{Binding PressureIn, StringFormat='{} {0} in'}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Visibility="{Binding RelativeHumidity, Converter={StaticResource NullOrEmptyToBooleanConverter}}">

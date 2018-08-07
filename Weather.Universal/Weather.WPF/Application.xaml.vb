@@ -1,6 +1,4 @@
-﻿Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Media.Animation
-Imports Microsoft.Extensions.DependencyInjection
+﻿Imports Microsoft.Extensions.DependencyInjection
 Imports Weather.ViewModels
 Imports Weather.Services
 Imports Microsoft.Extensions.Logging
@@ -44,6 +42,7 @@ Class Application
 
         ' ViewModels
         services.AddTransient(Of MainViewModel)
+        services.AddTransient(Of AddWeatherSourceViewModel)
 
         _container = services.BuildServiceProvider
     End Sub

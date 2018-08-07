@@ -1,6 +1,5 @@
 ﻿Imports Weather.Models
 Imports Weather.Services
-Imports Windows.Devices.Geolocation
 Imports System.Threading
 
 Namespace Services
