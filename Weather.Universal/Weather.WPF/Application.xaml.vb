@@ -42,7 +42,7 @@ Class Application
 
         ' ViewModels
         services.AddTransient(Of MainViewModel)
-        services.AddTransient(Of AddWeatherSourceViewModel)
+        services.AddTransient(Of AddLocationViewModel)
 
         _container = services.BuildServiceProvider
     End Sub

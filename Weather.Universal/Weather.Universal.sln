@@ -15,6 +15,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Weather.UWP", "Weather.UWP\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Weather.WPF", "Weather.WPF\Weather.WPF.vbproj", "{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Weather.Core.Tests", "Weather.Core.Tests\Weather.Core.Tests.vbproj", "{949D409C-7334-4448-81F1-3FE228C4968F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,22 @@ Global
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Release|x64.Build.0 = Release|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Release|x86.ActiveCfg = Release|Any CPU
 		{714AB89D-2E01-4EE5-8F60-5EBF31CA01BF}.Release|x86.Build.0 = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|x64.Build.0 = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Debug|x86.Build.0 = Debug|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|ARM.Build.0 = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|x64.ActiveCfg = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|x64.Build.0 = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|x86.ActiveCfg = Release|Any CPU
+		{949D409C-7334-4448-81F1-3FE228C4968F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

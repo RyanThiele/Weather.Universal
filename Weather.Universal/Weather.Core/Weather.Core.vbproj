@@ -23,8 +23,8 @@
     </DefineConstants>
     <OutputPath>bin\Debug</OutputPath>
     <DocumentationFile>Weather.Core.xml</DocumentationFile>
-    <NoWarn>40057,42016,41999,42020,42021,42022</NoWarn>
-    <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
+    <NoWarn>40057</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +35,8 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <DocumentationFile>Weather.Core.xml</DocumentationFile>
-    <NoWarn>40057,42016,41999,42020,42021,42022</NoWarn>
-    <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
+    <NoWarn>40057</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -45,7 +45,7 @@
     <OptionCompare>Binary</OptionCompare>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
+    <OptionStrict>On</OptionStrict>
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
@@ -86,6 +86,7 @@
     <Compile Include="Buses\Busses.vb" />
     <Compile Include="Buses\IMessageBus.vb" />
     <Compile Include="Buses\MessageBus.vb" />
+    <Compile Include="Extensions.vb" />
     <Compile Include="Messages\RemoveWeatherSourceMessage.vb" />
     <Compile Include="Messages\ResetDatabaseMessage.vb" />
     <Compile Include="Messages\StatusMessage.vb" />
@@ -108,8 +109,9 @@
     <Compile Include="Services\Essential Services\INavigationService.vb" />
     <Compile Include="Services\ISettingsService.vb" />
     <Compile Include="Services\IWeatherService.vb" />
-    <Compile Include="ViewModels\AddWeatherSourceViewModel.vb" />
+    <Compile Include="ViewModels\AddLocationViewModel.vb" />
     <Compile Include="ViewModels\CurrentObservationsViewModel.vb" />
+    <Compile Include="ViewModels\_EditViewModelBase.vb" />
     <Compile Include="ViewModels\LocationViewModel.vb" />
     <Compile Include="ViewModels\MainViewModel.vb" />
     <Compile Include="ViewModels\SettingsViewModel.vb" />

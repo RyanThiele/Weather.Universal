@@ -107,11 +107,8 @@
     <Compile Include="Services\NavigationService.vb" />
     <Compile Include="Services\SettingsService.vb" />
     <Compile Include="Services\WeatherService.vb" />
-    <Compile Include="Views\AddWeatherSourceView.Designer.vb">
-      <DependentUpon>AddWeatherSourceView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddWeatherSourceView.vb">
-      <SubType>UserControl</SubType>
+    <Compile Include="Views\AddLocationView.xaml.vb">
+      <DependentUpon>AddLocationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CurrentObservationsView.xaml.vb">
       <DependentUpon>CurrentObservationsView.xaml</DependentUpon>
@@ -119,6 +116,10 @@
     <Compile Include="Views\MainView.xaml.vb">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Page Include="DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -138,6 +139,10 @@
     <Page Include="SampleData\CurrentObserevationsSampleData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CurrentObservationsView.xaml">
       <Generator>MSBuild:Compile</Generator>

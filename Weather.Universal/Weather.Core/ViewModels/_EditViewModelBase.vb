@@ -21,11 +21,17 @@
             End Get
         End Property
 
+
+        Private ReadOnly _allErrors As New ObservableCollection(Of String)
         ''' <summary>
         ''' A collection of all the errors as strings.
         ''' </summary>
         ''' <returns>An <see cref="ObservableCollection(Of String)"/> containing all the error messages.</returns>
-        Public Property AllErrors As ObservableCollection(Of String)
+        Public ReadOnly Property AllErrors As ObservableCollection(Of String)
+            Get
+                Return _allErrors
+            End Get
+        End Property
 
         ''' <summary>
         ''' Adds an error message to the underlying collection using the given property name.
@@ -38,7 +44,7 @@
             End If
 
             If Not _errors(propertyName).Contains(errorMessage) Then _errors(propertyName).Add(errorMessage)
-            If Not AllErrors.Contains(errorMessage) Then AllErrors.Add(errorMessage)
+            If Not _allErrors.Contains(errorMessage) Then _allErrors.Add(errorMessage)
             RaiseEvent ErrorsChanged(Me, New DataErrorsChangedEventArgs(propertyName))
         End Sub
 
@@ -48,12 +54,12 @@
         ''' <param name="errorMessage">The error message for the property.</param>
         ''' <param name="propertyName">The property that the error message relates to.</param>
         Protected Sub RemoveError(errorMessage As String, <CallerMemberName> Optional propertyName As String = Nothing)
-            If Errors.ContainsKey(propertyName) AndAlso Errors(propertyName).Contains(errorMessage) Then
-                Errors(propertyName).Remove(errorMessage)
-                If Errors(propertyName).Count = 0 Then Errors.Remove(propertyName)
+            If _errors.ContainsKey(propertyName) AndAlso _errors(propertyName).Contains(errorMessage) Then
+                _errors(propertyName).Remove(errorMessage)
+                If _errors(propertyName).Count = 0 Then _errors.Remove(propertyName)
             End If
 
-            If AllErrors.Contains(errorMessage) Then AllErrors.Remove(errorMessage)
+            If _allErrors.Contains(errorMessage) Then _allErrors.Remove(errorMessage)
 
             RaiseEvent ErrorsChanged(Me, New DataErrorsChangedEventArgs(propertyName))
         End Sub

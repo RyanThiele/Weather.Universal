@@ -74,12 +74,12 @@ Namespace ViewModels
 
 #Region "Progress"
 
-        Dim _Progress As Integer
-        Public Property Progress As Integer
+        Dim _Progress As Double
+        Public Property Progress As Double
             Get
                 Return _Progress
             End Get
-            Set(value As Integer)
+            Private Set(value As Double)
                 _Progress = value
                 OnPropertyChanged("Progress")
             End Set
@@ -131,7 +131,7 @@ Namespace ViewModels
         End Function
 
         Private Sub ExecuteAddLocation()
-            _navigationService.NavigateTo(Of AddWeatherSourceViewModel)()
+            _navigationService.NavigateTo(Of AddLocationViewModel)()
         End Sub
 
 #End Region
@@ -164,11 +164,11 @@ Namespace ViewModels
                             locations = Await GetLocationsAsync()
                             If locations Is Nothing Then
                                 ' Get the current location
-                                Dim currentLocation As Models.GeoCoordinate = Await GetCurrentLocationAsync()
+                                Dim currentLocation As Models.Location = Await GetCurrentLocationAsync()
                                 If currentLocation Is Nothing Then
                                     ' Ask user to enter a location.
                                     _logger.LogDebug("Navigating to AddWeatherSourceViewModel")
-                                    _navigationService.NavigateTo(Of AddWeatherSourceViewModel)()
+                                    _navigationService.NavigateTo(Of AddLocationViewModel)()
                                     Return
                                 End If
 
@@ -198,7 +198,7 @@ Namespace ViewModels
             Return locations
         End Function
 
-        Private Async Function GetCurrentLocationAsync() As Task(Of IEnumerable(Of Models.GeoCoordinate))
+        Private Async Function GetCurrentLocationAsync() As Task(Of Models.Location)
             Dim location As Models.Location = Nothing
 
             Using _logger.BeginScope("Current Location")
