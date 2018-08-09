@@ -1,6 +1,9 @@
 ﻿
 <TestClass()> Public MustInherit Class UnitTestBase
 
+    Public Property TestContext As TestContext
+
+
     Protected Function CreateMessageBus() As IMessageBus
         Return New Fakes.StubIMessageBus
     End Function

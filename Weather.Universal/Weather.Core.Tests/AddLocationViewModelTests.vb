@@ -1,5 +1,8 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports Microsoft.Extensions.Logging
+Imports Microsoft.Extensions.Logging.Fakes
+Imports Weather.ViewModels
 
 <TestClass()>
 Public Class AddLocationViewModelTests
@@ -10,6 +13,7 @@ Public Class AddLocationViewModelTests
     Public Sub EmptySearchString_ShouldNotPerformSearch()
         ' Prepare
         Dim isUsingLocationService As Boolean = False
+
         Dim locationService As New Services.Fakes.StubILocationService
         With locationService
             .GetLocationByCityAndStateAsyncStringStringInt32CancellationToken = Async Function()
@@ -28,7 +32,7 @@ Public Class AddLocationViewModelTests
                                                                             Return Nothing
                                                                         End Function
         End With
-        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, locationService)
+        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, TestContextLogger(Of AddLocationViewModel).Instance(TestContext), locationService)
 
         ' Execute
         viewModel.SearchCommand.Execute(Nothing)
@@ -63,7 +67,7 @@ Public Class AddLocationViewModelTests
                                                                             Return Nothing
                                                                         End Function
         End With
-        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, locationService)
+        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, TestContextLogger(Of AddLocationViewModel).Instance(TestContext), locationService)
         viewModel.SearchString = "12345"
 
         ' Execute
@@ -103,7 +107,7 @@ Public Class AddLocationViewModelTests
                                                                         End Function
         End With
 
-        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, locationService)
+        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, TestContextLogger(Of AddLocationViewModel).Instance(TestContext), locationService)
         viewModel.SearchString = "City, State"
 
         ' Execute
@@ -141,7 +145,7 @@ Public Class AddLocationViewModelTests
                                                                             Return Nothing
                                                                         End Function
         End With
-        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, locationService)
+        Dim viewModel As New ViewModels.AddLocationViewModel(CreateMessageBus, CreateDialogService, CreateNavigationService, TestContextLogger(Of AddLocationViewModel).Instance(TestContext), locationService)
         viewModel.SearchString = "123.45, 123.45"
 
         ' Execute

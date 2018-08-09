@@ -3,6 +3,7 @@ Imports System.Windows.Input
 Imports Weather.Services
 Imports Microsoft.VisualBasic
 Imports System.Text.RegularExpressions
+Imports Microsoft.Extensions.Logging
 
 Namespace ViewModels
 
@@ -27,13 +28,15 @@ Namespace ViewModels
         End Sub
 
         Public Sub New(messageBus As IMessageBus,
-                   dialogService As IDialogService,
-                   navigationService As INavigationService,
-                   locationService As ILocationService)
+                       dialogService As IDialogService,
+                       navigationService As INavigationService,
+                       logger As ILogger(Of AddLocationViewModel),
+                       locationService As ILocationService)
 
             _messageBus = messageBus
             _dialogService = dialogService
             _navigationService = navigationService
+            _logger = logger
             _locationService = locationService
             '_weatherService = weatherService
             '_settingsService = settingsService
@@ -204,6 +207,7 @@ Namespace ViewModels
         Private Async Function PerformSearchAsync() As Task
             ' Sanity check
             If String.IsNullOrWhiteSpace(_SearchString) Then
+                _logger.LogError("No search string was entered.")
                 AddError(EMPTY_SEARCH_STRING_ERROR_MSG, "SearchString")
                 Return
             Else
@@ -216,17 +220,15 @@ Namespace ViewModels
             _cancellationTokenSource = New CancellationTokenSource
 
             ' Get the Location.
-            Dim location As Models.Location = Await GetLocationAsync()
-            If location Is Nothing Then
-                ' location is not found. notify user and bail.
-                Status = "Could not find a weather station for postal code: " & PostalCode & ". Please try again."
-                Return
-            End If
+            Using _logger.BeginScope("Location")
+                Dim location As Models.Location = Await GetLocationAsync()
+                If location Is Nothing Then
+                    ' location is not found. notify user and bail.
+                    Status = "Could not find a weather station for postal code: " & PostalCode & ". Please try again."
+                    Return
+                End If
+            End Using
 
-            If _dialogService.ShowYesNoDialog("Location Found!", "There was a location found: " & location.Address.DisplayString & Environment.NewLine &
-                                           "Do you want to use this location?") Then
-                Dim locationList As New List(Of Models.Location)
-            End If
         End Function
 
         Private Async Function GetLocationAsync() As Task(Of Models.Location)
@@ -234,18 +236,21 @@ Namespace ViewModels
 
             Dim postalCodeCountry As Countries? = SearchString.PostalCodeRegionFromPostalCode
             If postalCodeCountry.HasValue Then
+                _logger.LogInformation("Getting location by Postal Code: {0} Valid:{1}", SearchString, postalCodeCountry.HasValue)
                 location = Await _locationService.GetLocationByPostalCodeAsync(SearchString, 3, _cancellationTokenSource.Token)
                 Return location
             End If
 
             Dim latLong As LatLong? = SearchString.ToLatLong
             If latLong.HasValue Then
+                _logger.LogInformation("Getting location by Latitude/Longitude: {0} Valid:{1}", SearchString, latLong.HasValue)
                 location = Await _locationService.GetLocationByLatitudeLongitudeAsync(latLong.Value.Latitude, latLong.Value.Longitude, 3, _cancellationTokenSource.Token)
                 Return location
             End If
 
             Dim cityAndRegion As CityAndRegion? = SearchString.ToCityAndRegion
             If cityAndRegion.HasValue Then
+                _logger.LogInformation("Getting location by City/State: {0} Valid:{1}", SearchString, cityAndRegion.HasValue)
                 location = Await _locationService.GetLocationByCityAndStateAsync(cityAndRegion.Value.City, cityAndRegion.Value.Region, 3, _cancellationTokenSource.Token)
                 Return location
             End If

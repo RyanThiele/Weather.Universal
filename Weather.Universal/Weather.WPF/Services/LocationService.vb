@@ -7,6 +7,10 @@ Namespace Services
     Public Class LocationService
         Implements ILocationService
 
+        Public Function CreateLocationAsync(location As Location) As Task Implements ILocationService.CreateLocationAsync
+            Throw New NotImplementedException()
+        End Function
+
         Public Function GetLocationByCityAndStateAsync(city As String, state As String, numberOfStations As Integer, token As CancellationToken) As Task(Of Location) Implements ILocationService.GetLocationByCityAndStateAsync
             Throw New NotImplementedException()
         End Function
