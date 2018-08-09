@@ -112,7 +112,11 @@ Friend Module Extensions
         Double.TryParse(parts(0), lat)
         Double.TryParse(parts(1), lon)
 
-        Return New LatLong() With {.Latitude = lat, .Longitude = lon}
+        If lat = 0 And lon = 0 Then
+            Return Nothing
+        Else
+            Return New LatLong() With {.Latitude = lat, .Longitude = lon}
+        End If
     End Function
 
     <Extension>

@@ -213,28 +213,12 @@ Namespace ViewModels
             SearchString = SearchString.Trim
 
             ' Determine what the user is searching for.
-            Dim location As Models.Location = Nothing
             _cancellationTokenSource = New CancellationTokenSource
 
-            Dim postalCodeCountry As Countries? = SearchString.PostalCodeRegionFromPostalCode
-            If postalCodeCountry.HasValue Then location = Await _locationService.GetLocationByPostalCodeAsync(SearchString, 3, _cancellationTokenSource.Token)
-
+            ' Get the Location.
+            Dim location As Models.Location = Await GetLocationAsync()
             If location Is Nothing Then
-                Dim latLong As LatLong? = SearchString.ToLatLong
-                If latLong.HasValue Then
-                    location = Await _locationService.GetLocationByLatitudeLongitudeAsync(latLong.Value.Latitude, latLong.Value.Longitude, 3, _cancellationTokenSource.Token)
-                End If
-            End If
-
-            If location Is Nothing Then
-                Dim cityAndRegion As CityAndRegion? = SearchString.ToCityAndRegion
-                If cityAndRegion.HasValue Then
-                    location = Await _locationService.GetLocationByCityAndStateAsync(cityAndRegion.Value.City, cityAndRegion.Value.Region, 3, _cancellationTokenSource.Token)
-                End If
-            End If
-
-            ' location is not found. notify user and bail.
-            If location Is Nothing Then
+                ' location is not found. notify user and bail.
                 Status = "Could not find a weather station for postal code: " & PostalCode & ". Please try again."
                 Return
             End If
@@ -245,7 +229,29 @@ Namespace ViewModels
             End If
         End Function
 
+        Private Async Function GetLocationAsync() As Task(Of Models.Location)
+            Dim location As Models.Location = Nothing
 
+            Dim postalCodeCountry As Countries? = SearchString.PostalCodeRegionFromPostalCode
+            If postalCodeCountry.HasValue Then
+                location = Await _locationService.GetLocationByPostalCodeAsync(SearchString, 3, _cancellationTokenSource.Token)
+                Return location
+            End If
+
+            Dim latLong As LatLong? = SearchString.ToLatLong
+            If latLong.HasValue Then
+                location = Await _locationService.GetLocationByLatitudeLongitudeAsync(latLong.Value.Latitude, latLong.Value.Longitude, 3, _cancellationTokenSource.Token)
+                Return location
+            End If
+
+            Dim cityAndRegion As CityAndRegion? = SearchString.ToCityAndRegion
+            If cityAndRegion.HasValue Then
+                location = Await _locationService.GetLocationByCityAndStateAsync(cityAndRegion.Value.City, cityAndRegion.Value.Region, 3, _cancellationTokenSource.Token)
+                Return location
+            End If
+
+            Return location
+        End Function
 #End Region
 
     End Class
