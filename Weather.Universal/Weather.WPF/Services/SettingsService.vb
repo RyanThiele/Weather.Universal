@@ -6,21 +6,11 @@ Namespace Services
 
     Public Class SettingsService
         Implements ISettingsService
-        Public Async Function GetCurrentLocationAsync(token As CancellationToken) As Task(Of Models.GeoCoordinate) Implements ISettingsService.GetCurrentLocationAsync
-            Throw New NotImplementedException
-            'Dim geolocation As New Geolocator
-            'Dim result As Geoposition = Await geolocation.GetGeopositionAsync.AsTask
-
-            'If result Is Nothing Then
-            '    Return Nothing
-            'Else
-            '    Return New Models.GeoCoordinate With {
-            '        .Latitude = CType(result.Coordinate.Latitude, Decimal),
-            '        .Longitude = CType(result.Coordinate.Longitude, Decimal)}
-            'End If
+        Public Function GetCurrentLocationAsync(token As CancellationToken) As Task(Of Models.GeoCoordinate) Implements ISettingsService.GetCurrentLocationAsync
+            Return Task.Delay(0)
         End Function
 
-        Public Async Function GetSelectedLocationsAsync() As Task(Of IEnumerable(Of Location)) Implements ISettingsService.GetSelectedLocationsAsync
+        Public Async Function GetLocationsAsync(token As CancellationToken) As Task(Of IEnumerable(Of Location)) Implements ISettingsService.GetLocationsAsync
             Await Task.Delay(0)
             Return Nothing
         End Function

@@ -74,7 +74,7 @@ Namespace Services
         End Sub
 
         Public Async Sub NavigateTo(Of TViewModel As ViewModelBase)(Optional addToHistory As Boolean = True) Implements INavigationService.NavigateTo
-            Dim viewModel As ViewModelBase = Application.Container.GetService(GetType(TViewModel))
+            Dim viewModel As ViewModelBase = Application.Container.GetRequiredService(GetType(TViewModel))
             Application.ApplicationMainWindow.MainContent.Content = viewModel
             If addToHistory Then
                 _history.Add(GetType(TViewModel))

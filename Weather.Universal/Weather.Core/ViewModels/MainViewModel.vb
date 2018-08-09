@@ -1,6 +1,7 @@
 ﻿Imports System.Threading
 Imports System.Windows.Input
 Imports Weather.Services
+Imports Microsoft.Extensions.Logging
 
 Namespace ViewModels
     Public Class MainViewModel
@@ -9,25 +10,31 @@ Namespace ViewModels
         Private ReadOnly _messageBus As IMessageBus
         Private ReadOnly _dialogService As IDialogService
         Private ReadOnly _navigationService As INavigationService
+        Private ReadOnly _locationService As ILocationService
         Private ReadOnly _settingsService As ISettingsService
         Private ReadOnly _weatherService As IWeatherService
 
 
-        Private ReadOnly _locationService As ILocationService
-        Private _locationTokenSource As CancellationTokenSource
-
 
 #Region "Constructors"
 
-        Public Sub New()
+        'Public Sub New()
 
-        End Sub
+        'End Sub
 
-        Public Sub New(messageBus As IMessageBus, dialogService As IDialogService, navigationService As INavigationService, locationService As ILocationService, settingsService As ISettingsService, weatherService As IWeatherService)
+        Public Sub New(messageBus As IMessageBus,
+                       dialogService As IDialogService,
+                       navigationService As INavigationService,
+                       logger As ILogger(Of MainViewModel),
+                       locationService As ILocationService,
+                       settingsService As ISettingsService,
+                       weatherService As IWeatherService)
+
             _messageBus = messageBus
             _dialogService = dialogService
             _navigationService = navigationService
             _locationService = locationService
+            _logger = logger
 
             _settingsService = settingsService
             _weatherService = weatherService
@@ -67,12 +74,12 @@ Namespace ViewModels
 
 #Region "Progress"
 
-        Dim _Progress As Integer
-        Public Property Progress As Integer
+        Dim _Progress As Double
+        Public Property Progress As Double
             Get
                 Return _Progress
             End Get
-            Set(value As Integer)
+            Private Set(value As Double)
                 _Progress = value
                 OnPropertyChanged("Progress")
             End Set
@@ -124,7 +131,7 @@ Namespace ViewModels
         End Function
 
         Private Sub ExecuteAddLocation()
-            _navigationService.NavigateTo(Of AddWeatherSourceViewModel)()
+            _navigationService.NavigateTo(Of AddLocationViewModel)()
         End Sub
 
 #End Region
@@ -141,41 +148,89 @@ Namespace ViewModels
         ''' This is the trunk logic for the view model. So, the try/catch will go here.
         ''' </remarks>
         Public Overrides Async Function InitializeAsync(Optional parameter As Object = Nothing) As Task
-            If _IsIntilizing Then Return
-            _IsIntilizing = True
-            Try
-                Dim locations As IEnumerable(Of Models.Location) = Await _settingsService.GetSelectedLocationsAsync
-                ' We do no have a location. Detect the current location as accept that.
-                If locations Is Nothing Then
-                    Dim tokenSource As New CancellationTokenSource
-                    Dim currentGeoCoordinate As Models.GeoCoordinate = Await _settingsService.GetCurrentLocationAsync(New CancellationToken)
-                    Dim location As Models.Location = Await _locationService.GetLocationByLatitudeLongitudeAsync(currentGeoCoordinate.Latitude, currentGeoCoordinate.Longitude, 3, tokenSource.Token)
+            Dim locations As IEnumerable(Of Models.Location) = Nothing
 
-                    If location Is Nothing Then Return
-                    locations = {location}
-                    Await _settingsService.SetSelectedLocationsAsync(locations)
-                End If
 
-                Dim currentObservationsTasks As New List(Of Task)
-                LocationViewModels.Clear()
-                For index = 0 To locations.Count - 1
-                    Dim viewModel As New LocationViewModel(locations(index), _settingsService, _weatherService)
-                    LocationViewModels.Add(viewModel)
-                    currentObservationsTasks.Add(viewModel.InitializeAsync(locations(index)))
-                Next
+            Using _logger.BeginScope("InitializeAsync")
+                Try
+                    If _IsIntilizing Then
+                        _logger.LogInformation("ViewModel is Initializing. Bailing...")
+                        Return
+                    Else
+                        _cancellationTokenSource = New CancellationTokenSource()
 
-                Await Task.WhenAll(currentObservationsTasks)
-            Catch ex As Exception
-                ' TODO: We need to recover here!
+                        Using _logger.BeginScope("Locations")
+                            ' Get saved locations
+                            locations = Await GetLocationsAsync()
+                            If locations Is Nothing Then
+                                ' Get the current location
+                                Dim currentLocation As Models.Location = Await GetCurrentLocationAsync()
+                                If currentLocation Is Nothing Then
+                                    ' Ask user to enter a location.
+                                    _logger.LogDebug("Navigating to AddWeatherSourceViewModel")
+                                    _navigationService.NavigateTo(Of AddLocationViewModel)()
+                                    Return
+                                End If
 
-            End Try
-
-            _IsIntilizing = False
+                            End If
+                        End Using
+                        _IsIntilizing = False
+                    End If
+                Catch ex As Exception
+                    _logger.LogError("There was an error: {0}", ex.Message)
+                End Try
+            End Using
         End Function
 
+        Private Async Function GetLocationsAsync() As Task(Of IEnumerable(Of Models.Location))
+            Dim locations As IEnumerable(Of Models.Location) = Nothing
 
+            Using _logger.BeginScope("Saved Locations")
+                Try
+                    _logger.LogInformation("Getting locations...")
+                    locations = Await _settingsService.GetLocationsAsync(_cancellationTokenSource.Token)
+                    If locations Is Nothing Then _logger.LogInformation("There are no saved locations")
+                Catch ex As Exception
+                    _logger.LogError("There was an error: {0}", ex.Message)
+                End Try
+            End Using
 
+            Return locations
+        End Function
 
+        Private Async Function GetCurrentLocationAsync() As Task(Of Models.Location)
+            Dim location As Models.Location = Nothing
+
+            Using _logger.BeginScope("Current Location")
+                Try
+                    _logger.LogInformation("Getting Current Location...")
+                    Dim currentGeoCoordinate As Models.GeoCoordinate = Await _settingsService.GetCurrentLocationAsync(_cancellationTokenSource.Token)
+                    If _cancellationTokenSource.Token.IsCancellationRequested Then Return Nothing
+                    If currentGeoCoordinate Is Nothing Then
+                        _logger.LogWarning("Application cannot retrieve current geographical coordinate.")
+                        Return Nothing
+                    Else
+                        _logger.LogDebug("Retrieved geographical coordinate: {0}:{1}", currentGeoCoordinate.Latitude, currentGeoCoordinate.Longitude)
+                    End If
+
+                    _logger.LogInformation("Getting location by latitude, longitude", currentGeoCoordinate.Latitude, currentGeoCoordinate.Longitude)
+
+                    location = Await _locationService.GetLocationByLatitudeLongitudeAsync(currentGeoCoordinate.Latitude, currentGeoCoordinate.Longitude, 3, _cancellationTokenSource.Token)
+                    If _cancellationTokenSource.IsCancellationRequested Then Return Nothing
+                    If location Is Nothing Then
+                        _logger.LogWarning("Application cannot retrieve current location.")
+                        Return Nothing
+                    Else
+                        _logger.LogDebug("Retrieved location: {0}", location.Address.DisplayString)
+                    End If
+
+                Catch ex As Exception
+                    _logger.LogError("There was an error: {0}", ex.Message)
+                End Try
+            End Using
+
+            Return location
+        End Function
 #End Region
 
 

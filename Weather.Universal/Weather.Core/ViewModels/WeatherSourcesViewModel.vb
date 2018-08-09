@@ -67,7 +67,7 @@ Namespace ViewModels
         End Function
 
         Private Sub ExecuteAddWeatherSource()
-            _navigationService.NavigateTo(Of AddWeatherSourceViewModel)()
+            _navigationService.NavigateTo(Of AddLocationViewModel)()
         End Sub
 
 #End Region

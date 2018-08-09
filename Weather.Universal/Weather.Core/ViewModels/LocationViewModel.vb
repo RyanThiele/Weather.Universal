@@ -166,21 +166,12 @@ Namespace ViewModels
 #Region "Methods"
 
         Public Overrides Function InitializeAsync(Optional parameter As Object = Nothing) As Task
-            UpdateDataAsync()
-
-            'Dim timer As New DispatcherTimer
-            'timer.Interval = TimeSpan.FromMinutes(1)
-            'AddHandler timer.Tick, Sub(s, e)
-            '                           UpdateDataAsync()
-            '                       End Sub
-            'timer.Start()
-
-            'Return Task.Delay(0)
+            Return Task.Delay(0)
         End Function
 
         Private Async Sub UpdateDataAsync()
             Try
-                LastChecked = DateTime.Now
+                LastChecked = DateTime.Now.ToString
                 _cancelationTokenSource = New CancellationTokenSource
 
                 Await UpdateCurrentObservationsAsync()

@@ -1,5 +1,4 @@
-﻿Imports Microsoft.Isam.Esent.Interop
-Imports Weather.Services
+﻿Imports Weather.Services
 
 Public Class WeatherService
 

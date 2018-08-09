@@ -7,7 +7,11 @@ Namespace Services
     Public Class LocationService
         Implements ILocationService
 
-        Public Function GetLocationByLatitudeLongitudeAsync(latitude As Decimal, longitude As Decimal, numberOfStations As Integer, token As CancellationToken) As Task(Of Location) Implements ILocationService.GetLocationByLatitudeLongitudeAsync
+        Public Function GetLocationByCityAndStateAsync(city As String, state As String, numberOfStations As Integer, token As CancellationToken) As Task(Of Location) Implements ILocationService.GetLocationByCityAndStateAsync
+            Throw New NotImplementedException()
+        End Function
+
+        Public Function GetLocationByLatitudeLongitudeAsync(latitude As Double, longitude As Double, numberOfStations As Integer, token As CancellationToken) As Task(Of Location) Implements ILocationService.GetLocationByLatitudeLongitudeAsync
             Throw New NotImplementedException()
         End Function
 

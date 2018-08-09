@@ -1,8 +1,7 @@
-﻿Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Media.Animation
-Imports Microsoft.Extensions.DependencyInjection
+﻿Imports Microsoft.Extensions.DependencyInjection
 Imports Weather.ViewModels
 Imports Weather.Services
+Imports Microsoft.Extensions.Logging
 
 Class Application
 
@@ -22,15 +21,6 @@ Class Application
     End Property
 
 
-    Protected Overrides Sub OnStartup(e As StartupEventArgs)
-        _mainWindow = ApplicationMainWindow
-        ApplicationMainWindow.Show()
-
-        Dim navigationService = _container.GetRequiredService(Of INavigationService)()
-        navigationService.NavigateTo(Of MainViewModel)()
-    End Sub
-
-
     ''' <summary>
     ''' Initializes the singleton application object. This is the first line of authored code
     ''' executed, and as such is the logical equivalent of main() or WinMain().
@@ -43,6 +33,7 @@ Class Application
         ' Services
         services.AddSingleton(Of INavigationService, Services.NavigationService)
         services.AddSingleton(Of IMessageBus, MessageBus)
+        services.AddLogging()
 
         services.AddTransient(Of IDialogService, Services.DialogService)
         services.AddTransient(Of ISettingsService, Services.SettingsService)
@@ -51,10 +42,26 @@ Class Application
 
         ' ViewModels
         services.AddTransient(Of MainViewModel)
+        services.AddTransient(Of AddLocationViewModel)
 
         _container = services.BuildServiceProvider
+    End Sub
+
+
+    Protected Overrides Sub OnStartup(e As StartupEventArgs)
+        _mainWindow = ApplicationMainWindow
+        ApplicationMainWindow.Show()
+
+        Dim loggerFactory As ILoggerFactory = _container.GetRequiredService(Of ILoggerFactory)
+        loggerFactory.AddDebug(LogLevel.Debug)
+
+        Dim navigationService = _container.GetRequiredService(Of INavigationService)()
+        navigationService.NavigateTo(Of MainViewModel)()
 
     End Sub
+
+
+
 
 
 End Class

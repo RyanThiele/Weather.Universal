@@ -23,8 +23,8 @@
     </DefineConstants>
     <OutputPath>bin\Debug</OutputPath>
     <DocumentationFile>Weather.Core.xml</DocumentationFile>
-    <NoWarn>40057,42016,41999,42020,42021,42022</NoWarn>
-    <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
+    <NoWarn>40057</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +35,8 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <DocumentationFile>Weather.Core.xml</DocumentationFile>
-    <NoWarn>40057,42016,41999,42020,42021,42022</NoWarn>
-    <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
+    <NoWarn>40057</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -45,7 +45,7 @@
     <OptionCompare>Binary</OptionCompare>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
+    <OptionStrict>On</OptionStrict>
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
@@ -86,6 +86,7 @@
     <Compile Include="Buses\Busses.vb" />
     <Compile Include="Buses\IMessageBus.vb" />
     <Compile Include="Buses\MessageBus.vb" />
+    <Compile Include="Extensions.vb" />
     <Compile Include="Messages\RemoveWeatherSourceMessage.vb" />
     <Compile Include="Messages\ResetDatabaseMessage.vb" />
     <Compile Include="Messages\StatusMessage.vb" />
@@ -103,13 +104,14 @@
     <Compile Include="Models\Station.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="RelayCommand.vb" />
-    <Compile Include="Services\IDialogService.vb" />
+    <Compile Include="Services\Essential Services\IDialogService.vb" />
     <Compile Include="Services\ILocationService.vb" />
-    <Compile Include="Services\INavigationService.vb" />
+    <Compile Include="Services\Essential Services\INavigationService.vb" />
     <Compile Include="Services\ISettingsService.vb" />
     <Compile Include="Services\IWeatherService.vb" />
-    <Compile Include="ViewModels\AddWeatherSourceViewModel.vb" />
+    <Compile Include="ViewModels\AddLocationViewModel.vb" />
     <Compile Include="ViewModels\CurrentObservationsViewModel.vb" />
+    <Compile Include="ViewModels\_EditViewModelBase.vb" />
     <Compile Include="ViewModels\LocationViewModel.vb" />
     <Compile Include="ViewModels\MainViewModel.vb" />
     <Compile Include="ViewModels\SettingsViewModel.vb" />
@@ -117,6 +119,12 @@
     <Compile Include="ViewModels\WeatherSourcesViewModel.vb" />
     <Compile Include="ViewModels\_ObservableObject.vb" />
     <Compile Include="ViewModels\_ViewModelBase.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="SampleData\AddWeatherSourceViewModelSampleData.xaml">
@@ -135,6 +143,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -35,11 +35,11 @@ Namespace ViewModels
 #Region "IsUsingImperial"
 
         Dim _IsUsingImperial As Boolean
-        Public Property IsUsingImperial As String
+        Public Property IsUsingImperial As Boolean
             Get
                 Return _IsUsingImperial
             End Get
-            Set(value As String)
+            Set(value As Boolean)
                 _IsUsingImperial = value
                 OnPropertyChanged("IsUsingImperial")
             End Set
