@@ -9,4 +9,7 @@ A weather app that is universal across several Windows operating systems and dev
 Created using a MVVM archetecture. It also utilizes Inversion of Control (IoC) where the driver for the application is the Core project. These projects will start as Visual Basic .NET projects, but there may also be C# projects if more users come into the mix.
 
 ## Weather Sources
-At the moment thse project will source NOAA's feeds and services. But will extend to other facets as the project grows.
+At the moment the project will source NOAA's feeds and services. But will extend to other facets as the project grows.
+
+## Design
+After the infrastructure for the project is in place, it will be desgined using TDD. All tests will be ran through automated builds and must pass the build before it can be merged back into the master. Upon the merge, a release will be produced through the automated relase.
